@@ -1,0 +1,29 @@
+## searchresult:event
+
+<%= curl('GET', EVENT['_links']['self']['href']) %>
+
+~~~ csharp
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
+var searchResults = await api.Search.GetAsync("one direction");
+var event = await api.Hypermedia.GetAsync<Event>(searchResults[0].EventLink);
+~~~
+
+~~~ ruby
+api = GogoKit::Client.new(client_id: CLIENT_ID,
+                          client_secret: CLIENT_SECRET,
+                          access_token: ACCESS_TOKEN)
+search_results = api.search 'one direction'
+event = api.get search_results.items[0].links['searchresult:event']
+~~~
+
+<%= json(:event) %>
+
+You can GET the href of this link to retrieve the [`Event`](#event) resource
+that a search result represents.
+
+
+### Response
+
+The [`Event`](#event) resource.

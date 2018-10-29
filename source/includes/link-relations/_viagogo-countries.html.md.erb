@@ -1,0 +1,32 @@
+## viagogo:countries
+
+<%= curl('GET', ROOT['_links']['viagogo:countries']['href']) %>
+
+~~~ csharp
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
+var countries = await api.Countries.GetAllAsync();
+~~~
+
+~~~ ruby
+api = GogoKit::Client.new(client_id: CLIENT_ID,
+                          client_secret: CLIENT_SECRET,
+                          access_token: ACCESS_TOKEN)
+countries = api.get_countries
+~~~
+
+<%= json_paged_resource(:country, "viagogo:countries") %>
+
+You can `GET` the href of this link to retrieve the [`Countries`](#countries)
+resource that contains the available countries.
+
+### Parameters
+
+| **Name**  **Type** | **Description** |
+| `sort` | `string` | Determines the ordering of items. A comma-separated string containing `code`, or `name`. |
+
+### Response
+
+Returns the [`Countries`](#countries) resource that contains the available
+countries.

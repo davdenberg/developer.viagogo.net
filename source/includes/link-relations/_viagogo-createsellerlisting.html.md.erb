@@ -1,0 +1,82 @@
+## viagogo:createsellerlisting
+
+~~~ shell
+curl -X POST "<%= ROOT['_links']['viagogo:createsellerlisting']['href'] %>"
+     -H "User-Agent: MyAwesomeApp"
+     -H "Authorization: Bearer <%= ResourceHelpers::CLIENT_CREDENTIALS_TOKEN["access_token"] %>"
+     -d '{"external_id": "495293", "seating":{"section":"107","row":"A","seat_from":"1","seat_to":"2"},"ticket_price":{"amount":25.65,"currency_code":"USD"},"face_value":{"amount":22.62,"currency_code":"EUR"},"ticket_type":"ETicket","split_type":"Any","number_of_tickets":2,"event":{"name":"<%= EMBEDDED_EVENT["name"] %>","start_date":"<%= EMBEDDED_EVENT["start_date"] %>"},"venue":{"name":"<%= EMBEDDED_VENUE["name"]%>","city":"<%= EMBEDDED_VENUE["city"] %>"},"country": {"code": "<%= COUNTRY["code"] %>"}}'
+~~~
+
+~~~ csharp
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
+var listing = await api.SellerListings.CreateAsync(
+                new NewRequestedEventSellerListing
+                {
+                  ExternalId = "<%= SELLER_LISTING["external_id"] %>",
+                  NumberOfTickets = "<%= SELLER_LISTING["number_of_tickets"] %>",
+                  Seating = new Seating
+                            {
+                              Section = "<%= SELLER_LISTING["seating"]["section"] %>",
+                              Row = "<%= SELLER_LISTING["seating"]["row"] %>",
+                              SeatFrom = "<%= SELLER_LISTING["seating"]["seat_from"] %>",
+                              SeatTo = "<%= SELLER_LISTING["seating"]["seat_to"] %>"
+                            },
+                  TicketPrice = new Money { Amount = 25.65, Currency = "USD" },
+                  FaceValue = new Money { Amount = 22.62, Currency = "EUR" },
+                  TicketType = "ETicket",
+                  SplitType = "Any",
+                  Event = new Event
+                          {
+                            Name = "<%= EMBEDDED_EVENT["name"] %>",
+                            StartDate = DateTimeOffset.Parse("<%= EMBEDDED_EVENT["start_date"] %>")
+                          },
+                  Venue = new Venue
+                          {
+                            Name = "<%= EMBEDDED_VENUE["name"] %>",
+                            City = "<%= EMBEDDED_VENUE["city"] %>"
+                          },
+                  Country = new Country { Code = "<%= COUNTRY["code"] %>" }
+                });
+~~~
+
+~~~ ruby
+# TODO
+~~~
+
+<%= json(:seller_listing) %>
+
+You can use a `POST` request on the href of this link to create a
+[`SellerListing`](#sellerlisting) for an event. If the event information in your
+request maps to an event already on the viagogo platform then the listing will be
+created for that event. Otherwise, the listing will be created against your
+"requested event" and it will automatically be mapped to an event on the viagogo
+platform when your "requested event" is accepted. This endpoint requires the
+`write:sellerlistings` and `write:requestedevents` scopes.
+
+
+### Parameters
+
+| **Name** | **Type** | **Required** | **Description** |
+| `event` | [`Event`](#event) | Yes | The `name` and `start_date` of the event this listing is for. |
+| `venue` | [`Venue`](#venue) | Yes | The `name` and `city` of the venue where the event is taking place. |
+| `country` | [`Country`](#country) | Yes | The `code` of the country where the event is taking place. |
+| `number_of_tickets` | `int` | Yes | The number of tickets available for purchase. |
+| `seating` | [`seating`](#seating) | Yes | The seating information for the ticket(s) in this listing. |
+| `ticket_price` | [`money`](#money) | Yes | The price of each ticket in the listing. |
+| `ticket_type` | `string` | Yes | The type of ticket(s) in this listing. Can be `PaperTicket`, `ETicket`, `PaperTicketNameChange`, `TesseraDelTifoso`, `SeasonCard`, `PaperTicketNameChange`, `ETicketNameChange` or `ETicketThirdPartyPreUpload`. |
+| `split_type` | `string` | Yes | The way that the ticket(s) are allowed to be split up when sold. Can be `Any`, `None`, `AvoidOne`, `AvoidOneAndThree`, or `Pairs`. |
+| `external_id` | `string` | No | An identifier that has been assigned to the listing in an external inventory management system |
+| `guarantee_payment_method_id` | `int` | No | The identifier of the credit card that should be used to guarantee your tickets. |
+| `notes` | `string` | No | A description of the features and/or restrictions of the tickets in the listing. |
+| `face_value` | [`money`](#money) | No | The price printed on the ticket, not including any booking fees. |
+| `display_number_of_tickets` | `int` | No | The number of tickets that should be displayed to buyers as available for purchase. |
+| `ticket_location_address_id` | `int` | No | The identifier of the address where the ticket(s) are located. |
+
+### Response
+
+Returns the [`SellerListing`](#sellerlisting) resource that is created. If the
+event information in your request maps to an event on the viagogo platform, the 
+listing's embedded [`event`](#event) `id` will be an `int`. Otherwise, it
+will be `null`.

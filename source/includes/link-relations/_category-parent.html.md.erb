@@ -1,0 +1,29 @@
+## category:parent
+
+<%= curl('GET', CATEGORY_PERFORMER['_links']['category:parent']['href']) %>
+
+~~~ csharp
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
+var category = await api.Categories.GetAsync(<%= CATEGORY_PERFORMER['id'] %>);
+var parentCategory = await api.Hypermedia.GetAsync<Category>(category.ParentLink, null);
+~~~
+
+~~~ ruby
+api = GogoKit::Client.new(client_id: CLIENT_ID,
+                          client_secret: CLIENT_SECRET,
+                          access_token: ACCESS_TOKEN)
+category = api.get_category <%= CATEGORY_PERFORMER['id'] %>
+parent_category = api.get category.links['category:parent']
+~~~
+
+<%= json(:category) %>
+
+You can GET the href of this link to retrieve the [`Category`](#category)
+resource that is a parent of a category.
+
+
+### Response
+
+The parent [`Category`](#category) resource.

@@ -1,0 +1,36 @@
+## Event
+
+An event on the viagogo platform.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `id` | `int` | The event identifier. |
+| `name` | `string` | The name of the event. |
+| `start_date` | [`datetime`](#datetime) | The date when the event starts. |
+| `end_date` | [`datetime`](#datetime) | The date when the event ends. |
+| `on_sale_date` | [`datetime`](#datetime) | The date when tickets for the event will go onsale. |
+| `number_of_tickets` | `int` | The number of tickets currently available for this event. |
+| `min_ticket_price` | [`money`](#money) | The minimum ticket price of the listings in this event. |
+| `date_confirmed` | `boolean` | True if the event start and end date have been confirmed; Otherwise, false. |
+| `notes_html` | `string` | Localized string containing HTML markup that describes the notes for the event. |
+| `restrictions_html` | `string` | Localized string containing HTML markup that describes the purchase restrictions on the event. |
+| `affiliate_commission_tier` | `string` | The tier of commission paid to affiliates that market this event. Can be `Normal` or `Low` (See [Affiliate Commission Tiers](#affiliate-commission-tiers)). |
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | An event. |
+| [`event:category`](#eventcategory) | `GET` | No | The category that contains this event. |
+| [`event:listings`](#eventlistings) | `GET` | No | The listings for this event. |
+| [`event:localwebpage`](#eventlocalwebpage) | `GET` | No | The webpage on the local viagogo website for this event. |
+| [`event:webpage`](#eventwebpage) | `GET` | No | The webpage on the viagogo website for this event. |
+| [`event:listingconstraints`](#eventlistingconstraints) | `GET` | No | The listing constraints for this event. |
+| [`event:createsellerlisting`](#eventcreatesellerlisting) | `POST` | No | Create a [`SellerListing`](#sellerlisting) for this event. |
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `venue` | | [`Venue`](#venue) | No | The Venue where the event is taking place. |
+| `category` | | [`Category`](#category) | Yes | The category for this event. |

@@ -1,0 +1,22 @@
+## sellerlisting:ticketlocation
+
+<%= curl('GET', SELLER_LISTING['_links']['sellerlisting:ticketlocation']['href']) %>
+
+~~~ csharp
+// TODO
+~~~
+
+~~~ ruby
+# TODO
+~~~
+
+<%= json(:address) %>
+
+You can GET the href of this link to retrieve the [`Address`](#address)
+resource where the tickets are located. This endpoint requires the `read:user`
+scope.
+
+
+### Response
+
+The [`Address`](#address) resource.

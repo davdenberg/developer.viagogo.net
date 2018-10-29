@@ -1,0 +1,204 @@
+---
+title: viagogo API v2
+
+language_tabs:
+  - shell: cURL
+  - csharp: C#
+  - ruby: Ruby
+  - php: PHP
+  - python: Python
+
+toc_footers:
+  - <a href='https://github.com/viagogo/developer.viagogo.net'>Source code</a>
+  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+
+includes:
+  - overview
+  - overview/quick-reference
+  - overview/explorable-api
+  - overview/sandbox-environment
+  - overview/libraries
+  - overview/http-methods
+  - overview/http-status-codes
+  - overview/error-responses
+  - overview/pagination
+  - overview/sorting
+  - overview/embedded-resources
+  - overview/sparse-fieldsets
+  - overview/localization
+  - overview/http-caching
+  - overview/resource-changes
+  - overview/idempotent-requests
+  - overview/batching-requests
+
+  - announcements
+  - announcements/tls1.0
+
+  - authentication
+  - authentication/basic-steps
+  - authentication/application-only-flow
+  - authentication/user-login-flow
+  - authentication/token-expiration
+  - authentication/scopes
+
+  - managing-listings
+  - managing-listings/create-listings-for-viagogo-events
+  - managing-listings/create-listings-for-events-on-users-pos
+  - managing-listings/update-listings
+  - managing-listings/handling-errors
+
+  - managing-sales
+  - managing-sales/access-sales
+  - managing-sales/confirm-sales
+  - managing-sales/upload-etickets
+  - managing-sales/ship-tickets
+  - managing-sales/arrange-courier-collection
+
+  - webhooks
+  - webhooks/salestopic
+  - webhooks/provisionalsaletopic
+  - webhooks/cancelprovisionalsaletopic
+  - webhooks/pingtopic
+
+  - browsing-events
+  - browsing-events/search-for-events
+  - browsing-events/get-events-in-genre
+  - browsing-events/direct-users-to-website
+  - browsing-events/affiliate-commission-tiers
+
+  - basic-types
+
+  - resources
+  - resources/address
+  - resources/addresses
+  - resources/carrier
+  - resources/categories
+  - resources/category
+  - resources/countries
+  - resources/country
+  - resources/currencies
+  - resources/currency
+  - resources/delivery-method
+  - resources/eticket
+  - resources/etickets
+  - resources/eticket-upload
+  - resources/eticket-uploads
+  - resources/event
+  - resources/events
+  - resources/language
+  - resources/languages
+  - resources/listing-constraints
+  - resources/listing-note
+  - resources/listing-notes
+  - resources/listing
+  - resources/listings
+  - resources/metro-area
+  - resources/metro-areas
+  - resources/payment-method
+  - resources/payment-methods
+  - resources/pickup
+  - resources/root
+  - resources/sale
+  - resources/sales
+  - resources/search-result
+  - resources/search-results
+  - resources/seller-listing
+  - resources/seller-listings
+  - resources/shipment
+  - resources/shipments
+  - resources/split-type
+  - resources/ticket-type
+  - resources/ticket-types
+  - resources/user
+  - resources/venue
+  - resources/venues
+  - resources/webhook
+  - resources/webhooks
+
+  - link-relations
+  - link-relations/address-carrier
+  - link-relations/address-create
+  - link-relations/address-delete
+  - link-relations/address-update
+  - link-relations/carrier-createpickup
+  - link-relations/category-children
+  - link-relations/category-events
+  - link-relations/category-image
+  - link-relations/category-parent
+  - link-relations/category-performers
+  - link-relations/category-webpage
+  - link-relations/country-events
+  - link-relations/eticket-delete
+  - link-relations/eticket-document
+  - link-relations/eticket-thumbnail
+  - link-relations/eticketupload-document
+  - link-relations/event-category
+  - link-relations/event-createsellerlisting
+  - link-relations/event-listingconstraints
+  - link-relations/event-listings
+  - link-relations/event-localwebpage
+  - link-relations/event-webpage
+  - link-relations/listing-event
+  - link-relations/listing-localwebpage
+  - link-relations/listing-webpage
+  - link-relations/metroarea-events
+  - link-relations/metroarea-venues
+  - link-relations/paymentmethod-createcreditcard
+  - link-relations/paymentmethod-createpaypal
+  - link-relations/paymentmethod-delete
+  - link-relations/paymentmethod-updatecreditcard
+  - link-relations/paymentmethod-updatedefaults
+  - link-relations/paymentmethod-updatepaypal
+  - link-relations/pickup-delete
+  - link-relations/sale-autotrackshipment
+  - link-relations/sale-confirm
+  - link-relations/sale-etickets
+  - link-relations/sale-eticketuploads
+  - link-relations/sale-reject
+  - link-relations/sale-saveetickets
+  - link-relations/sale-shipments
+  - link-relations/sale-trackshipment
+  - link-relations/sale-uploadetickets
+  - link-relations/searchresult-category
+  - link-relations/searchresult-event
+  - link-relations/searchresult-metroarea
+  - link-relations/searchresult-venue
+  - link-relations/sellerlisting-constraints
+  - link-relations/sellerlisting-delete
+  - link-relations/sellerlisting-publish
+  - link-relations/sellerlisting-ticketlocation
+  - link-relations/sellerlisting-unpublish
+  - link-relations/sellerlisting-updatefacevalue
+  - link-relations/sellerlisting-updateinhandat
+  - link-relations/sellerlisting-updatenotes
+  - link-relations/sellerlisting-updatenumberoftickets
+  - link-relations/sellerlisting-updatesplittype
+  - link-relations/sellerlisting-updateticketlocation
+  - link-relations/sellerlisting-updateticketprice
+  - link-relations/sellerlisting-updatetickettype
+  - link-relations/shipment-create
+  - link-relations/shipment-label
+  - link-relations/user-addresses
+  - link-relations/user-paymentmethods
+  - link-relations/user-sales
+  - link-relations/user-sellerlistings
+  - link-relations/user-webhooks
+  - link-relations/venue-events
+  - link-relations/venue-metroarea
+  - link-relations/viagogo-countries
+  - link-relations/viagogo-createsellerlisting
+  - link-relations/viagogo-currencies
+  - link-relations/viagogo-genres
+  - link-relations/viagogo-languages
+  - link-relations/viagogo-listingconstraints
+  - link-relations/viagogo-metroareas
+  - link-relations/viagogo-search
+  - link-relations/viagogo-user
+  - link-relations/viagogo-venues
+  - link-relations/webhook-create
+  - link-relations/webhook-delete
+  - link-relations/webhook-ping
+  - link-relations/webhook-update
+
+search: true
+---
